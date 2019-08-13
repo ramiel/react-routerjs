@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import { Router, Request, RouterOptions } from 'routerjs';
+import { Router, RouterOptions } from 'routerjs';
 
 interface RouterContextContent {
-  options: RouterOptions,
-  path: string | null,
+  options: RouterOptions;
+  path: string | null;
 }
 
-export const RouterContext = React.createContext<RouterContextContent | null>(null);
+export const RouterContext = React.createContext<RouterContextContent | null>(
+  null,
+);
 
 let initialized = false;
 
 interface RouterProviderProps {
   router: Router;
-  children: React.ReactNode | Array<React.ReactNode>;
+  children: React.ReactNode | React.ReactNode[];
 }
 
 const RouterProvider = ({ router, children }: RouterProviderProps) => {
@@ -20,15 +22,19 @@ const RouterProvider = ({ router, children }: RouterProviderProps) => {
 
   if (!initialized) {
     initialized = true;
-    router.always(req => {
+    router.always((req) => {
       setCurrentPath(req);
-    })
+    });
   }
   return (
-    <RouterContext.Provider value={{
-      options: router._getOptions(),
-      path: currentPath
-    }}>{children}</RouterContext.Provider>
+    <RouterContext.Provider
+      value={{
+        options: router._getOptions(),
+        path: currentPath,
+      }}
+    >
+      {children}
+    </RouterContext.Provider>
   );
 };
 
