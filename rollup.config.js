@@ -6,7 +6,7 @@ const isProd = process.env.NODE_ENV === 'production';
 export default [
   {
     input: 'src/index.ts',
-    external: ['events'],
+    external: [...Object.keys(pkg.peerDependencies)],
     plugins: [
       typescript({
         clean: isProd,

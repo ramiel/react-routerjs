@@ -8,9 +8,27 @@ const Link: React.SFC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
 }) => {
   const ctx = useContext(RouterContext);
 
-  const newHref = ctx ? `${ctx.options.basePath}/${href}` : href;
+  if (!ctx) {
+    console.warn(
+      'Link must be descendant of a RouterProvider. Fallback to a regular anchor',
+    );
+    return (
+      <a href={href} {...props}>
+        {children}
+      </a>
+    );
+  }
+  const newHref = `${ctx.options.basePath}${href}`;
   return (
-    <a href={newHref} {...props}>
+    <a
+      href={newHref}
+      {...props}
+      data-routerjs-ignore
+      onClick={(e) => {
+        e.preventDefault();
+        ctx.navigate(newHref);
+      }}
+    >
       {children}
     </a>
   );

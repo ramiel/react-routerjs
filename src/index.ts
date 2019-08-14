@@ -1,2 +1,4 @@
-export * from './RouterProvider';
-export * from './Link';
+import RouterProvider from './RouterProvider';
+import Link from './Link';
+
+export { Link, RouterProvider };

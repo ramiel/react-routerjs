@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Router, RouterOptions } from 'routerjs';
 
 interface RouterContextContent {
-  options: RouterOptions;
+  options: Omit<RouterOptions, 'engine'>;
   path: string | null;
+  navigate: (path: string) => void;
 }
 
 export const RouterContext = React.createContext<RouterContextContent | null>(
@@ -22,8 +23,8 @@ const RouterProvider = ({ router, children }: RouterProviderProps) => {
 
   if (!initialized) {
     initialized = true;
-    router.always((req) => {
-      setCurrentPath(req);
+    router.always((path) => {
+      setCurrentPath(path);
     });
   }
   return (
@@ -31,6 +32,7 @@ const RouterProvider = ({ router, children }: RouterProviderProps) => {
       value={{
         options: router._getOptions(),
         path: currentPath,
+        navigate: router.navigate,
       }}
     >
       {children}
