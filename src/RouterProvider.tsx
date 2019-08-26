@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Router, RouterOptions } from 'routerjs';
+import { Router, RouterOptions, RouteContext } from 'routerjs';
 
 interface RouterContextContent {
   options: Omit<RouterOptions, 'engine'>;
-  path: string | null;
+  path: RouteContext | null;
   navigate: (path: string) => void;
 }
 
@@ -19,12 +19,12 @@ interface RouterProviderProps {
 }
 
 const RouterProvider = ({ router, children }: RouterProviderProps) => {
-  const [currentPath, setCurrentPath] = useState<string | null>(null);
+  const [currentPath, setCurrentPath] = useState<RouteContext | null>(null);
 
   if (!initialized) {
     initialized = true;
-    router.always((path) => {
-      setCurrentPath(path);
+    router.always((ctx) => {
+      setCurrentPath(ctx);
     });
   }
   return (
