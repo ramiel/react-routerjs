@@ -3,7 +3,7 @@ import { Router, RouterOptions, RouteContext } from 'routerjs';
 
 interface RouterContextContent {
   options: Omit<RouterOptions, 'engine'>;
-  path: RouteContext | null;
+  context: RouteContext | null;
   navigate: (path: string) => void;
 }
 
@@ -31,7 +31,7 @@ const RouterProvider = ({ router, children }: RouterProviderProps) => {
     <RouterContext.Provider
       value={{
         options: router._getOptions(),
-        path: currentPath,
+        context: currentPath,
         navigate: router.navigate,
       }}
     >
