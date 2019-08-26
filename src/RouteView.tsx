@@ -1,20 +1,21 @@
 import React, { useContext, Suspense, SuspenseProps } from 'react';
 import { RouterContext } from './RouterProvider';
 
-const RouteView: React.SFC<Pick<SuspenseProps, 'fallback'>> = ({
+interface RouteViewProps extends Pick<SuspenseProps, 'fallback'> {
+  target?: string;
+}
+
+const RouteView: React.SFC<RouteViewProps> = ({
   fallback,
+  target = 'main',
 }) => {
   const routerContext = useContext(RouterContext);
-  console.log(
-    routerContext &&
-      routerContext.context &&
-      routerContext.context.__ROUTE_VIEW__,
-  );
   return (
     <Suspense fallback={fallback}>
       {(routerContext &&
         routerContext.context &&
-        routerContext.context.__ROUTE_VIEW__) ||
+        routerContext.context.__ROUTE_VIEWS__ &&
+        routerContext.context.__ROUTE_VIEWS__[target]) ||
         fallback}
     </Suspense>
   );
