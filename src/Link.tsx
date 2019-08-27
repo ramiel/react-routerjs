@@ -18,7 +18,7 @@ const Link: React.SFC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
       </a>
     );
   }
-  const newHref = `${ctx.options.basePath}${href}`;
+  const newHref = ctx.buildUrl(href || '');
   return (
     <a
       href={newHref}

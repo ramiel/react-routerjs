@@ -5,6 +5,7 @@ interface RouterContextContent {
   options: Omit<RouterOptions, 'engine'>;
   context: RouteContext | null;
   navigate: (path: string) => void;
+  buildUrl: (path: string) => string;
 }
 
 export const RouterContext = React.createContext<RouterContextContent | null>(
@@ -35,6 +36,7 @@ const RouterProvider = ({ router, children }: RouterProviderProps) => {
         options: router._getOptions(),
         context: currentContext,
         navigate: router.navigate,
+        buildUrl: router.buildUrl,
       }}
     >
       {children}
