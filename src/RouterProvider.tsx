@@ -19,19 +19,21 @@ interface RouterProviderProps {
 }
 
 const RouterProvider = ({ router, children }: RouterProviderProps) => {
-  const [currentPath, setCurrentPath] = useState<RouteContext | null>(null);
+  const [currentContext, setCurrentContext] = useState<RouteContext | null>(
+    null,
+  );
 
   if (!initialized) {
     initialized = true;
     router.always((ctx) => {
-      setCurrentPath(ctx);
+      setCurrentContext(ctx);
     });
   }
   return (
     <RouterContext.Provider
       value={{
         options: router._getOptions(),
-        context: currentPath,
+        context: currentContext,
         navigate: router.navigate,
       }}
     >
