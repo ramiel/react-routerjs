@@ -25,7 +25,7 @@ You need to install both `RouterJS` and `react-routerjs`.
 with yarn
 
 ```
-yarn addrouterjs react-routerjs
+yarn add routerjs react-routerjs
 ```
 
 or with npm
@@ -37,7 +37,7 @@ npm install --save routerjs react-routerjs
 
 ##  2. <a name='Usage'></a>Usage
 
-the main component provided by this library is a `RouterProvider` to which you need to pass your configured
+The main component provided by this library is a `RouterProvider` to which you need to pass your configured
 router. You should put this provider on a top position in your react project. To know how to define routes
 refer to [RouterJS documentation](https://github.com/ramiel/router.js)
 
@@ -48,9 +48,8 @@ import App from './App'; // you react app code
 
 const router = createRouter()
   .get('/', () => {
-    // ....
-  })
-  .run();
+    // route handler
+  })  .run();
 
 // ....
 
@@ -65,15 +64,25 @@ Any other component provided by this library must be a descendant of the RouterP
 
 ##  3. <a name='Link'></a>Link
 
-A `Link` component is provided to easily create anchors. Always remember that also normal anchors will fire router events (see [documentation for this](https://github.com/ramiel/router.js/tree/next#4111-browserhistoryengine)) but the advantage of using the `Link` component is that you can omit the `basePath` if any since it will automatically prepend to any href. `Link` takes the same attributes as an anchor
+A `Link` component is provided to easily create anchors. Always remember that also normal anchors will fire router events (see [documentation for this](https://github.com/ramiel/router.js/tree/next#BrowserHistoryEngine)) but the advantage of using the `Link` component is that you can omit the `basePath`, if any, since it will automatically prepend it to any href. `Link` takes the same attributes as an anchor
 
 ```js
 <Link href="/post/14">Article on cats</Link>
 ```
 
+If `basePath` is `/blog`
+
+```jsx
+<Link href="/posts">Post list</Link>
+// is equivalent to
+<a href="/blog/posts">Post list</a>
+```
+
+__NOTE__: `Link` will always run your handlers even if `bindClick` is set ot false in your router engine, as explained [here](https://github.com/ramiel/router.js/tree/next#BrowserHistoryEngine).
+
 ##  4. <a name='View'></a>View
 
-react-routerjs apply an opinionated way of showing a view depending on the route. This is done through two components:
+react-routerjs applies an opinionated way of showing a view depending on the route. This is done through two components:
 
 - a `withView` middleware
 - a `RouteView` component
@@ -128,7 +137,7 @@ import { RouteView } from 'react-routerjs';
 
 The couple `withView` and `RouteView` takes another parameter, called `target`. The default `target` is called `main` but you can specify a different one. This let you build more complex applications. In this example we define another target called `sidebar` to choose which view to show in a sidebar
 
-```jsx
+```js
 import { createRouter, ocmpose } from 'routerjs';
 import { withView } from 'react-routerjs';
 
@@ -144,9 +153,11 @@ const router = createRouter()
       context.users = await loadUsers();
     }
   ));
+```
 
-// Later, in your application
+Later, in your application
 
+```jsx
 <div className="main">
   <div className="content">
     /* This will show the UserList component */
@@ -161,7 +172,7 @@ const router = createRouter()
 
 ##  5. <a name='RouterContextanduseRouterhook'></a>RouterContext and useRouter hook
 
-To access current router context and router method in your component, you can use the `useRouter` hook
+To access current router context and router methods in your components, you can use the `useRouter` hook
 
 ```jsx
 import { useRouter } from 'react-routerjs';
@@ -180,7 +191,7 @@ const MyComponent = () => {
 The routerContext contains the following properties:
 
 A subset of the [router methods](https://github.com/ramiel/router.js/tree/next#Routermethods)
-- __navigate__: a method to navigate
+- __navigate__: a method to navigate to a desired url
 - __buildUrl__: a method to build an url
 
 and the [router context](https://github.com/ramiel/router.js/tree/next#Context)
@@ -188,7 +199,7 @@ and the [router context](https://github.com/ramiel/router.js/tree/next#Context)
 
 Refer to its documentation to know how the context works.
 
-__NOTE__ remember that `routerContext` can be null, so check it before usage
+__NOTE__ remember that `routerContext` can be `null`, so check it before usage
 
 If you cannot use `hooks`, you can use the regular [react context](https://reactjs.org/docs/context.html) to access the same values.
 
@@ -196,4 +207,4 @@ If you cannot use `hooks`, you can use the regular [react context](https://react
 
 This is pretty much all you need to know to use RouterJS with React. Consider that RouterJS is thought to be framework agnostic and this is just one of the possible way to use it with React. If you find that this way is not the best for your project, or you want to implement a different coupling between React and RouterJS, you should create your own implementation: it's very fun!
 
-To do it, study carefully how RouterJS works and remember that the router has an handy method, `always` that let you attach some code and execute it for any route! Also, look at the implementation of this project to get some idea.
+To do it, study carefully how RouterJS works and remember that the router has an handy method, `router.always((context) => {})`, that let you attach some code and execute it for any route! Also, look at the implementation of this project to get some idea.
