@@ -64,7 +64,7 @@ Any other component provided by this library must be a descendant of the RouterP
 
 ##  3. <a name='Link'></a>Link
 
-A `Link` component is provided to easily create anchors. Always remember that also normal anchors will fire router events (see [documentation for this](https://github.com/ramiel/router.js/tree/next#BrowserHistoryEngine)) but the advantage of using the `Link` component is that you can omit the `basePath`, if any, since it will automatically prepend it to any href. `Link` takes the same attributes as an anchor
+A `Link` component is provided to easily create anchors. Always remember that also normal anchors will fire router events (see [documentation for this](https://github.com/ramiel/router.js/tree/master#BrowserHistoryEngine)) but the advantage of using the `Link` component is that you can omit the `basePath`, if any, since it will automatically prepend it to any href. `Link` takes the same attributes as an anchor
 
 ```js
 <Link href="/post/14">Article on cats</Link>
@@ -78,7 +78,7 @@ If `basePath` is `/blog`
 <a href="/blog/posts">Post list</a>
 ```
 
-__NOTE__: `Link` will always run your handlers even if `bindClick` is set ot false in your router engine, as explained [here](https://github.com/ramiel/router.js/tree/next#BrowserHistoryEngine).
+__NOTE__: `Link` will always run your handlers even if `bindClick` is set ot false in your router engine, as explained [here](https://github.com/ramiel/router.js/tree/master#BrowserHistoryEngine).
 
 ##  4. <a name='View'></a>View
 
@@ -190,11 +190,11 @@ const MyComponent = () => {
 
 The routerContext contains the following properties:
 
-A subset of the [router methods](https://github.com/ramiel/router.js/tree/next#Routermethods)
+A subset of the [router methods](https://github.com/ramiel/router.js/tree/master#Routermethods)
 - __navigate__: a method to navigate to a desired url
 - __buildUrl__: a method to build an url
 
-and the [router context](https://github.com/ramiel/router.js/tree/next#Context)
+and the [router context](https://github.com/ramiel/router.js/tree/master#Context)
 - __context__: the router context which contains
 
 Refer to its documentation to know how the context works.
