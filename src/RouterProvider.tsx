@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Router, RouterOptions, RouteContext } from 'routerjs';
 
-interface RouterContextContent {
+export interface RouterContextContent {
   options: Omit<RouterOptions, 'engine'>;
   context: RouteContext | null;
   navigate: (path: string) => void;
