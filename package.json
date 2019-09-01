@@ -45,5 +45,8 @@
   "peerDependencies": {
     "react": "^16.9.0",
     "routerjs": "^2.0.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
