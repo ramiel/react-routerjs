@@ -53,15 +53,18 @@ import App from './App'; // you react app code
 const router = createRouter()
   .get('/', () => {
     // route handler
-  })  .run();
+  });
 
-// ....
 
 ReactDOM.render(
   <RouterProvider router={router}>
     <App />
   </RouterProvider>
 , document.getElementById('app'));
+
+// Run the router after the render method 
+// if you want to parse also the entrance url
+router.run();
 ```
 
 Any other component provided by this library must be a descendant of the RouterProvider.
