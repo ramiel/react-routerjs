@@ -138,7 +138,7 @@ import { RouteView } from 'react-routerjs';
 The couple `withView` and `RouteView` takes another parameter, called `target`. The default `target` is called `main` but you can specify a different one. This let you build more complex applications. In this example we define another target called `sidebar` to choose which view to show in a sidebar
 
 ```js
-import { createRouter, ocmpose } from 'routerjs';
+import { createRouter, compose } from 'routerjs';
 import { withView } from 'react-routerjs';
 
 import UserList from './UserList';
@@ -181,7 +181,7 @@ const MyComponent = () => {
   const routerContext = useRouter();
 
   if(routerContext) {
-    routerContext.navigate('/somewhere'); // method to navigate
+    routerContext.router.navigate('/somewhere'); // method to navigate
     routerContext.context.path(); // access current path
     routerContext.context.currentUser; // For example, if your route populate the context with the user
   }
@@ -190,11 +190,12 @@ const MyComponent = () => {
 
 The routerContext contains the following properties:
 
-A subset of the [router methods](https://github.com/ramiel/router.js/tree/master#Routermethods)
-- __navigate__: a method to navigate to a desired url
-- __buildUrl__: a method to build an url
+The router instance with all the [router methods](https://github.com/ramiel/router.js/tree/master#Routermethods).    
+The most useful will probably be:
+- __router.navigate__: a method to navigate to a desired url
+- __router.buildUrl__: a method to build an url considering the basePath
 
-and the [router context](https://github.com/ramiel/router.js/tree/master#Context)
+and the [route context](https://github.com/ramiel/router.js/tree/master#Context)
 - __context__: the router context which contains
 
 Refer to its documentation to know how the context works.

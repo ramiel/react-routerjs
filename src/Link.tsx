@@ -18,7 +18,7 @@ const Link: React.SFC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
       </a>
     );
   }
-  const newHref = ctx.buildUrl(href || '');
+  const newHref = ctx.router.buildUrl(href || '');
   return (
     <a
       href={newHref}
@@ -26,7 +26,7 @@ const Link: React.SFC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
       data-routerjs-ignore
       onClick={(e) => {
         e.preventDefault();
-        ctx.navigate(newHref);
+        ctx.router.navigate(newHref);
       }}
     >
       {children}
