@@ -174,6 +174,28 @@ Later, in your application
 </div>
 ```
 
+You can do the same in case of error just using `withErrorView`
+
+```js
+import { createRouter, compose } from 'routerjs';
+import { withErrorView } from 'react-routerjs';
+
+import View404 from './View404';
+
+const on404 = () => {
+  // ...
+}
+
+const router = createRouter()
+  // ....
+  .error(
+    404, 
+    withErrorView((error, ctx) => <View404 path={ctx.path} />)(on404)
+  )
+```
+
+The only difference is that you have access to the error, not the request.
+
 ##  5. <a name='RouterContextanduseRouterhook'></a>RouterContext and useRouter hook
 
 To access current router context and router methods in your components, you can use the `useRouter` hook
