@@ -28,6 +28,9 @@ const RouterProvider = ({ router, children }: RouterProviderProps) => {
     router.always((ctx) => {
       setCurrentContext(ctx);
     });
+    router.error('*', (_error, ctx) => {
+      setCurrentContext(ctx);
+    });
   }
   return (
     <RouterContext.Provider
