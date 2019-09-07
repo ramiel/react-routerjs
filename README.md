@@ -1,4 +1,8 @@
+[![npm version](https://badge.fury.io/js/react-routerjs.svg)](https://badge.fury.io/js/react-routerjs)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/FabrizioRuggeri)
+
 # Routerjs - React
+
 
 React bindings for [RouterJS](https://github.com/ramiel/router.js). These bindings simplify the usage 
 of RouterJS in a react project
