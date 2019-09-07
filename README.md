@@ -91,40 +91,40 @@ react-routerjs applies an opinionated way of showing a view depending on the rou
 - a `withView` middleware
 - a `RouteView` component
 
-Use `withView` to declare which View to show on a route
+Use `withView` to declare which View to show on a route. It accepts a function that gets the current `req` and `context`. You may use it to pass parameters to your components.
 
 ```js
 import { createRouter } from 'routerjs';
 import { withView } from 'react-routerjs';
 import UserList from './UserList';
-import PostList from './PostList';
+import Post from './Post';
 
 const router = createRouter()
-  .get('/users', withView(<UserList />)(
+  .get('/users', withView((req, ctx) => <UserList />)(
     async (req, context) => {
       context.users = await loadUsers();
     }
   ))
-  .get('/posts', withView(<PostList />)(
+  .get('/post/:id', withView((req, ctx) => <Post id={req.params.id} />)(
     (req, context) => {
-      context.posts = await loadPosts();
+      await setPostAsVisited(req.params.id);
     }
   ))
   .run();
 ```
 
-you can also use `react.lazy` and provide a promise instead
+you can also use `react.lazy` and return a promise instead. This way your component will be lazy loaded only when the route is visited!
 
 ```js
 // ... as before
-const PostList = React.lazy(() => import('./PostList'));
+const Post = React.lazy(() => import('./Post'));
 
 router
-  .get('/posts', withView(<PostList />)(
+  .get('/post/:id', withView((req, ctx) => <Post id={req.params.id} />)(
     (req, context) => {
-      context.posts = await loadPosts();
+      await setPostAsVisited(req.params.id);
     }
-  ));
+  ))
 ```
 
 Now the view will be shown in your application where the `RouteView` placeholder is placed

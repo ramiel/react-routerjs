@@ -1,11 +1,13 @@
-import { RouteCallback } from 'routerjs';
+import { RouteCallback, Request, RouteContext } from 'routerjs';
 
-const withView = (view: any, target: string = 'main') => (
+export type RouteView = (req: Request, context: RouteContext) => any;
+
+const withView = (view: RouteView, target: string = 'main') => (
   fn: RouteCallback,
 ): RouteCallback => (req, context) => {
   context.__ROUTE_VIEWS__ = {
     ...context.__ROUTE_VIEWS__,
-    [target]: view,
+    [target]: view(req, context),
   };
   return fn(req, context);
 };
