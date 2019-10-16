@@ -1,6 +1,6 @@
 {
   "name": "react-routerjs",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "React bindings for routerjs",
   "main": "dist/react-routerjs.cjs.js",
   "module": "dist/react-routerjs.esm.js",

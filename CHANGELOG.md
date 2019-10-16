@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.1
+  - useRouter always return the context or throw an error if the provider is missing
+
 ## 0.4.0
   - Introduce withErroView to show a view during an error
 
