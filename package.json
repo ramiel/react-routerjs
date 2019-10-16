@@ -38,7 +38,7 @@
     "prettier": "^1.18.2",
     "rollup": "^1.19.4",
     "rollup-plugin-typescript2": "^0.22.1",
-    "routerjs": "file:../router.js",
+    "routerjs": "^2.3.2",
     "typescript": "^3.5.3"
   },
   "dependencies": {},
