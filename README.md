@@ -199,6 +199,8 @@ const router = createRouter()
 
 The only difference is that you have access to the error, not the request.
 
+`RouteView` internally uses Suspense, if you want to remove it pass the props `disableSuspense`.
+
 ##  5. <a name='RouterContextanduseRouterhook'></a>RouterContext and useRouter hook
 
 To access current router context and router methods in your components, you can use the `useRouter` hook
