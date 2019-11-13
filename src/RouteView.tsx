@@ -22,20 +22,9 @@ const RouteView: React.SFC<
   const { fallback } = props as RouteViewPropsWithSuspense;
   const routerContext = useContext(RouterContext);
   if (disableSuspense) {
-    return (
-      routerContext &&
-      routerContext.context &&
-      routerContext.context.__ROUTE_VIEWS__ &&
-      routerContext.context.__ROUTE_VIEWS__[target]
-    );
+    return routerContext?.context?.__ROUTE_VIEWS__[target];
   }
-  if (
-    !routerContext ||
-    !routerContext.context ||
-    !routerContext.context.__ROUTE_VIEWS__ ||
-    !routerContext.context.__ROUTE_VIEWS__[target]
-  )
-    return <>{fallback}</>;
+  if (!routerContext?.context?.__ROUTE_VIEWS__[target]) return <>{fallback}</>;
   return (
     <Suspense fallback={fallback}>
       {routerContext.context.__ROUTE_VIEWS__[target]}
