@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.5.1
+  - Fix: resolve a bug with optional chaining
+
 ## 0.5.0
   - Suspense can be disabled in RouteView
   - Minor improvements and dependencies updates
