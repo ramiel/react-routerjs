@@ -10,13 +10,16 @@ const RouteView: React.SFC<RouteViewProps> = ({
   target = 'main',
 }) => {
   const routerContext = useContext(RouterContext);
+  if (
+    !routerContext ||
+    !routerContext.context ||
+    !routerContext.context.__ROUTE_VIEWS__ ||
+    !routerContext.context.__ROUTE_VIEWS__[target]
+  )
+    return <>{fallback}</>;
   return (
     <Suspense fallback={fallback}>
-      {(routerContext &&
-        routerContext.context &&
-        routerContext.context.__ROUTE_VIEWS__ &&
-        routerContext.context.__ROUTE_VIEWS__[target]) ||
-        fallback}
+      {routerContext.context.__ROUTE_VIEWS__[target]}
     </Suspense>
   );
 };
