@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+  - Suspense can be disabled in RouteView
+  - Minor improvements and dependencies updates
+
 ## 0.4.1
   - useRouter always return the context or throw an error if the provider is missing
 
