@@ -1,6 +1,6 @@
 import { RouteContext, ErrorCallback } from 'routerjs';
 
-export type RouteErrorView = (e: Error, context: RouteContext) => any;
+export type RouteErrorView = (e: Error, context: RouteContext) => unknown;
 
 const withErrorView = (view: RouteErrorView, target: string = 'main') => (
   fn: ErrorCallback,

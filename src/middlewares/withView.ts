@@ -1,6 +1,6 @@
 import { RouteCallback, Request, RouteContext } from 'routerjs';
 
-export type RouteView = (req: Request, context: RouteContext) => any;
+export type RouteView = (req: Request, context: RouteContext) => unknown;
 
 const withView = (view: RouteView, target: string = 'main') => (
   fn: RouteCallback,
