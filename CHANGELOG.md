@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.5.2
+  - Fix `RouteView`: avoid useless re-render if the view hasn't changed.
+
 ## 0.5.1
   - Fix: resolve a bug with optional chaining
 
